@@ -18,8 +18,7 @@ def index():
 
 @app.route('/user/fuck/shit/bitch/<name>')
 def get_user(name):
-    print(url_for('user/fuck/shit/bitch', _external=True))
-    name_list = {'夏星','刘珍伟','张习慧','你大爷'}
+    print(url_for('get_user',name=name, _external=True))
     fuckDict = {'name':name,'password':'fuckyou!'}
     return render_template('user.html', name = name, shit = 'test', dic = fuckDict, name_list = name_list)
 
