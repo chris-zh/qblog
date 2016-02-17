@@ -36,5 +36,3 @@ config = {
     'testing': ProductionConfig,
     'default': DevelopmentConfig
 }
-
-print os.environ.get("SECRET_KEY") or 'hard to guess string'
