@@ -36,3 +36,4 @@ config = {
     'testing': ProductionConfig,
     'default': DevelopmentConfig
 }
+
