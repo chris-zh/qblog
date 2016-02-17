@@ -1,7 +1,28 @@
 {% extends "base.html" %}
 {% block title %}Index{% endblock %}
 {% block page_content %}
+<div class="row">
+    <div class="col-sm-4">
+        <div class="list-group">
+            <a href="#" class="list-group-item">
+                Cras justo odio
+            </a>
+            <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+            <a href="#" class="list-group-item">Morbi leo risus</a>
+            <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+            <a href="#" class="list-group-item">Vestibulum at eros</a>
+            <a href="#" class="list-group-item">Vestibulum at eros</a>
+            <a href="#" class="list-group-item">Vestibulum at eros</a>
+            <a href="#" class="list-group-item">Vestibulum at eros</a>
+            <a href="#" class="list-group-item">Vestibulum at eros</a>
+            <a href="#" class="list-group-item">Vestibulum at eros</a>
+            <a href="#" class="list-group-item">Vestibulum at eros</a>
+            <a href="#" class="list-group-item">Vestibulum at eros</a>
+        </div>
+    </div><!-- /.col-sm-4 -->
+</div>
 <div>
-    <h1>Welcome Index!</h1>
+    <p>The local date and time is {{ moment(current_time).format('YYYY-MM-DD HH:mm:ss') }}.</p>
+    <p>That was {{ moment(current_time).fromNow(refresh=True) }}</p>
 </div>
 {% endblock%}

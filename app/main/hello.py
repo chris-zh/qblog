@@ -4,17 +4,26 @@ from flask import Flask, request, make_response, redirect, abort, render_templat
 from flask import url_for
 from flask_script import Manager
 from flask_bootstrap import Bootstrap
+from flask_moment import Moment
+from datetime import datetime
+from flask_wtf import Form
+from wtforms import StringField, SubmitField
+from wtforms.validators import Required
+class NameForm(Form):
+    name = StringField('What is your name?', validators=[Required()])
+    submit = SubmitField('Submit')
 
 
 
 app = Flask(__name__)
 manager = Manager(app)
 bootstrap = Bootstrap(app)
+moment = Moment(app)
 
 @app.route('/')
 def index():
     print(url_for('index', _external=True))
-    return render_template('index.html')
+    return render_template('index.html', current_time = datetime.utcnow())
 
 @app.route('/user/fuck/shit/bitch/<name>')
 def get_user(name):
