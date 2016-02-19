@@ -3,10 +3,11 @@ id serial,
 name text,
 email text,
 phone text,
+password text,
 insert_time timestamp default now(),
 constraint s_user_pk primary key (id)
 );
 insert into t_user
-(name, email, phone)
+(name, email, phone,password)
 values
-('chris.zhang', 'chris.zh@outlook.com', '18621537152');
+('chris.zhang', 'chris.zh@outlook.com', '18621537152','chris.zhang1');
