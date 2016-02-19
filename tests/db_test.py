@@ -9,7 +9,15 @@ db = PostgresqlDatabase(
 
 )
 
+db2 = PooledPostgresqlExtDatabase(
+    'qblogdb',
+    max_connections=20,
+    stale_timeout= 300,
+    user = 'webflask',
+    password='webflask',
+    host='121.42.149.46',
+)
 
 class BaseModel(Model):
     class Meta:
-        database = db
+        database = db2

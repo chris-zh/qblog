@@ -1,7 +1,7 @@
-from playhouse.pool import PooledPostgresqlExtDatabase
-from peewee import *
+#from playhouse.pool import PooledPostgresqlExtDatabase
+from peewee import PostgresqlDatabase, Model
 
-db = PostgresqlDatabase(
+qblogdb = PostgresqlDatabase(
     'qblogdb',  # Required by Peewee.
     user='webflask',  # Will be passed directly to psycopg2.
     password='webflask',  # Ditto.
@@ -12,4 +12,4 @@ db = PostgresqlDatabase(
 
 class BaseModel(Model):
     class Meta:
-        database = db
+        database = qblogdb
