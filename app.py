@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request
-import models
+from flask import Flask, render_template, request, make_response, redirect, url_for,flash
+# import models
+from models import T_USER as User
 import qdb
 from flask_bootstrap import Bootstrap
 
@@ -10,13 +11,15 @@ db = qdb.qblogdb
 
 
 def addUser(name, email, phone, password):
-    user = models.T_USER(name=name, email=email, phone=phone, password=password)
+    user = User(name=name, email=email, phone=phone, password=password)
     user.save()
 
 
 def queryUser(name, email, phone, password):
-    user = models.T_USER.get(email=email, password=password)
+    print(18)
+    user = User.get(email=email, password=password)
     print(user)
+    return user
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -35,19 +38,39 @@ def register():
     return render_template('user.html', username=name, message='注册成功！'),
 
 
-@app.route('/helloworld', methods=['POST', 'GET'])
+@app.route('/signin', methods=['POST', 'GET'])
 def signin():
-    email = request.form['email']
+    print('fuckyou!')
+    print('hahaha')
+    print(0)
+    print(request)
+    print(12)
+    # email = request.form['email']
+    print(1)
     password = request.form['password']
+    print(2)
+    name = request.form['username']
+    print(3)
+    userdata = request.form.to_dict()
+    print(4)
+    print(userdata)
+    # print(email)
+    print(password)
+    print(52)
+    print(name)
+    user = ''
+    try:
+        print(51)
+        user = User.get(User.name == name and User.password == password)
+        # response = make_response(redirect(url_for('login_success')))
+        response = make_response(render_template('user.html', username=name, message='成功！'))
+        return response
+    except:
+        print(56)
+        return render_template('user.html', username=name, message='失败！')
 
-
-
-def post(request):
-    if request.method == 'POST':
-        return True
-    else:
-        return False
 
 
 if __name__ == '__main__':
     app.run(debug=True)
+    # app.run()
