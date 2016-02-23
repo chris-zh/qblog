@@ -1,6 +1,9 @@
 __author__ = 'chris.zhang'
 import os
+
 basedir = os.path.abspath(os.path.dirname(__file__))
+SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://%s:%s@%s/%s" % ('webflask', 'webflask', '121.42.149.46', 'qblogdb')
+
 
 class Config:
     SECRET_KEY = os.environ.get("SECRET_KEY") or 'hard to guess string'
@@ -13,6 +16,7 @@ class Config:
     def init_app(app):
         pass
 
+
 class DevelopmentConfig(Config):
     DEBUG = True
     MAIL_SERVER = 'smtp.126.com'
@@ -20,20 +24,22 @@ class DevelopmentConfig(Config):
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DB_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
+                              'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
+
 
 class TestingConfig(Config):
     TESTING = True
     SQLALCHMY_DATABASE_URI = os.environ.get('TEST_DB_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'data-test.sqlite')
+                             'sqlite:///' + os.path.join(basedir, 'data-test.sqlite')
+
 
 class ProductionConfig(Config):
     SQLALCHMY_DATABASE_URI = os.environ.get('DB_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+                             'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+
 
 config = {
     'development': DevelopmentConfig,
     'testing': ProductionConfig,
     'default': DevelopmentConfig
 }
-
